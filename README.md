@@ -1,7 +1,10 @@
 
 # Installation de Falco avec Helm
 
-Falco is a Cloud Native Computing Foundation project that provides runtime threat detection. Out of the box, Falco examines syscalls to alert you to any suspicious activity. And, since containers share the same kernel as their host, Falco can monitor not only activity on the host but also activity on all of the containers running on that host. Moreover, Falco pulls data from both Kubernetes and the container runtime to add additional context to its alerts.
+> **Falco est un projet de la Cloud Native Computing Foundation qui fournit une détection des menaces à l'exécution.**
+> Par défaut, Falco analyse les appels système (syscalls) pour vous alerter en cas d'activité suspecte.
+> Et comme les conteneurs partagent le même noyau que leur hôte, Falco peut surveiller non seulement l'activité de l'hôte, mais aussi celle de tous les conteneurs qui y sont exécutés.
+> De plus, Falco récupère des données à la fois depuis Kubernetes et depuis le runtime de conteneur afin d'ajouter un contexte supplémentaire à ses alertes.
 
 ## Ajout du repo
 
@@ -218,7 +221,6 @@ customRules:
       priority: WARNING
       tags: [network, reconnaissance]
 ```
-
 ## Création du namespace
 ```
 kubectl create namespace falco

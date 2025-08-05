@@ -6,14 +6,14 @@
 > Et comme les conteneurs partagent le même noyau que leur hôte, Falco peut surveiller non seulement l'activité de l'hôte, mais aussi celle de tous les conteneurs qui y sont exécutés.
 > De plus, Falco récupère des données à la fois depuis Kubernetes et depuis le runtime de conteneur afin d'ajouter un contexte supplémentaire à ses alertes.
 
-## Ajout du repo
+## 1 - Ajout du repo
 
 ```
 helm repo add falcosecurity https://falcosecurity.github.io/charts
 helm repo update
 
 ```
-## Création des custom rules
+## 2 - Création des custom rules
 
 ```
 touch falco_custom_rules.yaml
@@ -221,11 +221,11 @@ customRules:
       priority: WARNING
       tags: [network, reconnaissance]
 ```
-## Création du namespace
+## 3 - Création du namespace
 ```
 kubectl create namespace falco
 ```
-## Déploiement avec helm 
+## 4 - Déploiement avec helm 
 ```
 helm upgrade -n falco falco falcosecurity/falco \
   -f custom_falco_rules.yaml \
@@ -239,7 +239,7 @@ helm upgrade -n falco falco falcosecurity/falco \
   --set falcosidekick.config.slack.webhookurl="https://hooks.slack.com/services/xxx" \
   --set falcosidekick.config.slack.minimumpriority="warning"
 ```
-## Test
+## 5 - Test
 ```
 kubectl exec -it <pod> -- ping 8.8.8.8
 kubectl exec -it <pod> -- curl http://example.com

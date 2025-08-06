@@ -227,17 +227,14 @@ kubectl create namespace falco
 ```
 ## 4 - Déploiement avec helm 
 ```
-helm upgrade -n falco falco falcosecurity/falco \
-  -f custom_falco_rules.yaml \
-  --set falcosidekick.enabled=true \
-  --set falcosidekick.webui.enabled=truehelm install falco falcosecurity/falco\
+helm install falco falcosecurity/falco\
   --namespace falco \
   --set falcosidekick.enabled=true \
   --set falcosidekick.webui.enabled=true \
   --set tty=true \
   --set driver.kind=ebpf \
   --set falcosidekick.config.slack.webhookurl="https://hooks.slack.com/services/xxx" \
-  --set falcosidekick.config.slack.minimumpriority="warning"
+  --set falcosidekick.config.slack.minimumpriority="warning" -f falco_custom_rules.yaml
 ```
 ## 5 - Test
 ```
